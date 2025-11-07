@@ -1,4 +1,4 @@
-path: data
+path: ./data
 train: images
 val: validation
 nc: 3
