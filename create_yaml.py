@@ -6,9 +6,12 @@ import os
 # 2. Creates data dictionary with correct paths to folders, number of classes, and names of classes
 # 3. Writes data in YAML format to data.yaml
 
-DATA_PATH = "./data"
+DATA_PATH = "./data/"
+CLASSES_PATH = os.path.join(DATA_PATH, "classes.txt")
+DATA_YML_PATH = os.path.join(DATA_PATH, "data.yml")
 
-def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
+
+def create_data_yaml(path_to_classes_txt = CLASSES_PATH, path_to_data_yaml = DATA_YML_PATH):
 
     # Read class.txt to get class names
     if not os.path.exists(path_to_classes_txt):
@@ -19,14 +22,14 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
         for line in f.readlines():
             if len(line.strip()) == 0: 
                 continue
-        classes.append(line.strip())
+            classes.append(line.strip())
     number_of_classes = len(classes)
 
     # Create data dictionary
     data = {
-        'path': '/content/data',
-        'train': 'train/images',
-        'val': 'validation/images',
+        'path': 'data',
+        'train': 'images',
+        'val': 'validation',
         'nc': number_of_classes,
         'names': classes
     }
@@ -38,8 +41,4 @@ def create_data_yaml(path_to_classes_txt, path_to_data_yaml):
 
     return
 
-# Define path to classes.txt and run function
-path_to_classes_txt = '/content/custom_data/classes.txt'
-path_to_data_yaml = '/content/data.yaml'
-
-create_data_yaml(path_to_classes_txt, path_to_data_yaml)
+create_data_yaml()
