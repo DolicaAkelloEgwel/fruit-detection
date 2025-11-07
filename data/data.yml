@@ -1,0 +1,8 @@
+path: data
+train: images
+val: validation
+nc: 3
+names:
+- Apple
+- Banana
+- Orange
